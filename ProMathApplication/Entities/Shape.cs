@@ -4,7 +4,13 @@ namespace ProMathApplication.Entities
 {
     public abstract class Shape
     {
+        #region Private Fields
+
         private static Dictionary<string, int> _objectCount = new Dictionary<string, int>();
+
+        #endregion
+
+        #region Constructor
 
         protected Shape()
         {
@@ -19,15 +25,24 @@ namespace ProMathApplication.Entities
             }
         }
 
+        #endregion
+
+        #region Properties
         public abstract string Name { get; }
 
         public abstract double Perimeter { get; }
 
         public abstract double Area { get; }
 
+        #endregion
+
+        #region Public Methods
+
         public static Dictionary<string, int> GetInitializedObjectCount()
         {
             return _objectCount;
         }
+
+        #endregion
     }
 }

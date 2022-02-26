@@ -2,11 +2,17 @@
 {
     public class Triangle : Shape
     {
+        #region Private Fields
+
         private readonly double _height;
         private readonly double _base;
         private readonly double _sideA;
         private readonly double _sideB;
         private readonly double _sideC;
+
+        #endregion
+
+        #region Constructor
 
         public Triangle(double height, double triangleBase, double sideA, double sideB, double sideC)
         {
@@ -17,6 +23,9 @@
             _sideC = sideC;
         }
 
+        #endregion
+
+        #region Properties
         public override string Name
         {
             get
@@ -50,5 +59,7 @@
                 return (_height * _base) / 2;
             }
         }
+
+        #endregion
     }
 }

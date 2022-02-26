@@ -2,15 +2,24 @@
 {
     public class Quadrilateral : Shape
     {
-        private readonly double _length;
+        #region Private Fields
 
+        private readonly double _length;
         private readonly double _width;
+
+        #endregion
+
+        #region Constructor
 
         public Quadrilateral(double length, double width)
         {
             _length = length;
             _width = width;
         }
+
+        #endregion
+
+        #region Properties
 
         public override string Name
         {
@@ -35,5 +44,7 @@
                 return _length * _width;
             }
         }
+
+        #endregion
     }
 }

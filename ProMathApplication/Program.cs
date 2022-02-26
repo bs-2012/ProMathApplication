@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using ProMathApplication.Entities;
 using ProMathApplication.Enums;
-using ProMathApplication.Interfaces;
 using ProMathApplication.Managers;
 
 namespace ProMathApplication
@@ -39,7 +38,7 @@ namespace ProMathApplication
 
 
             PrintIntializedObjectList();
-            PrintShapesToFile(shapes, manager);
+            PrintShapesToFile(shapes, SerializeShapeFormat.Json);
         }
 
         private static void PrintIntializedObjectList()
@@ -58,12 +57,22 @@ namespace ProMathApplication
             }
         }
 
-        private static async Task PrintShapesToFile(List<Shape> shapes, IShapeManager manager)
+        private static async Task PrintShapesToFile(List<Shape> shapes, SerializeShapeFormat format)
         {
             if (shapes == null || !shapes.Any())
                 return;
 
-            var shapesData = manager.SerializeShapes(shapes);
+            var serializerFactory = new ProSerializerFactory();
+
+            var factory = serializerFactory.GetFactory(format);
+
+            if(factory == null)
+            {
+                Console.WriteLine("Factory not found");
+                return;
+            }               
+
+            var shapesData = factory.Serialize(shapes);
             using StreamWriter file = new("ShapesData.txt");
             await file.WriteLineAsync(shapesData);
         }

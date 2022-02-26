@@ -7,7 +7,5 @@ namespace ProMathApplication.Interfaces
     public interface IShapeManager
     {
         List<Shape> SortShapes(List<Shape> shapes, ShapeSortBy sortBy);
-
-        string SerializeShapes(List<Shape> shapes);
     }
 }

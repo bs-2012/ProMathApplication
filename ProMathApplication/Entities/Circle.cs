@@ -4,12 +4,24 @@ namespace ProMathApplication.Entities
 {
     public class Circle : Shape
     {
+        #region Private Fields
+
         private readonly double _radius;
+        private double? _area = null;
+        private double? _perimeter = null;
+
+        #endregion
+
+        #region Constructor
 
         public Circle(double radius)
         {
             _radius = radius;
         }
+
+        #endregion
+
+        #region Properties
 
         public override string Name
         {
@@ -23,7 +35,10 @@ namespace ProMathApplication.Entities
         {
             get
             {
-                return Math.PI * 2 * _radius;
+                if (!_perimeter.HasValue)
+                    _perimeter = Math.PI * 2 * _radius;
+
+                return _perimeter.Value;
             }
         }
 
@@ -31,8 +46,13 @@ namespace ProMathApplication.Entities
         {
             get
             {
-                return Math.PI * _radius * _radius;
+                if (!_area.HasValue)
+                    _area = Math.PI * _radius * _radius;
+
+                return _area.Value;
             }
         }
+
+        #endregion
     }
 }

@@ -2,6 +2,7 @@
 {
     public enum SerializeShapeFormat
     {
-        Json = 1
+        Json = 1,
+        Xml = 2
     }
 }
